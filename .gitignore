@@ -59,4 +59,4 @@ buck-out/
 /ios/Pods/
 
 # secter
-.env
+env.ts

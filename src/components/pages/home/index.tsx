@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { View } from 'react-native';
 
 import { Navigation, NavigationParams, Pages } from '../../../interfaces';
 import { ImgUpload } from '../../common/image-upload';
@@ -41,11 +42,13 @@ export const Home = ({ navigation }: IProps): ReactElement => {
                 <ImgUpload navigation={navigation} />
 
                 <Separator>or</Separator>
-                {references.map<ReactElement>(route => (
-                    <ReferenceItem key={route.page} navigation={navigation} navigateParams={[route.page, route.params]}>
-                        {route.text}
-                    </ReferenceItem>
-                ))}
+                <View style={{ marginBottom: 40 }}>
+                    {references.map<ReactElement>(route => (
+                        <ReferenceItem key={route.page} navigation={navigation} navigateParams={[route.page, route.params]}>
+                            {route.text}
+                        </ReferenceItem>
+                    ))}
+                </View>
 
                 <Separator>recent actions</Separator>
             </>

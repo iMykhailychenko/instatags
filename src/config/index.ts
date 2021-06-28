@@ -1,12 +1,14 @@
+import { env } from '../../env';
+
 export const config = {
     firebase: {
-        apiKey: process.env.API_KEY,
-        authDomain: process.env.AUTH_DOMAIN,
-        projectId: process.env.PROJECT_ID,
-        storageBucket: process.env.STORAGE_BUCKET,
-        messagingSenderId: process.env.MESSAGING_SENDER_ID,
-        appId: process.env.APP_ID,
-        measurementId: process.env.MEASUREMENT_ID,
+        apiKey: env.API_KEY,
+        authDomain: env.AUTH_DOMAIN,
+        projectId: env.PROJECT_ID,
+        storageBucket: env.STORAGE_BUCKET,
+        messagingSenderId: env.MESSAGING_SENDER_ID,
+        appId: env.APP_ID,
+        measurementId: env.MEASUREMENT_ID,
     },
-    visionApiKey: process.env.GOOGLE_CLOUD_VISION_API_KEY,
+    visionApiKey: env.GOOGLE_CLOUD_VISION_API_KEY,
 };

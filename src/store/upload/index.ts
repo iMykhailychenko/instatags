@@ -1,21 +1,18 @@
 import { makeAutoObservable } from 'mobx';
-import { ImagePickerResponse } from 'react-native-image-picker';
 
 export interface IUpload {
-    loading: boolean;
-    file: ImagePickerResponse | null;
-    add: (value: ImagePickerResponse) => Promise<ImagePickerResponse>;
+    file: string | null;
+    add: (value: string) => Promise<string>;
     remove: () => Promise<null>;
 }
 
 export default class Upload implements IUpload {
-    loading = true;
-    file: ImagePickerResponse | null = null;
+    file: string | null = null;
 
     constructor() {
         makeAutoObservable(this);
     }
 
-    add = async (value: ImagePickerResponse): Promise<ImagePickerResponse> => (this.file = value);
+    add = async (value: string): Promise<string> => (this.file = value);
     remove = async (): Promise<null> => (this.file = null);
 }

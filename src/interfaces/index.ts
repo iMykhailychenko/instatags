@@ -18,20 +18,45 @@ export interface IVisionBody {
     requests: [
         {
             features: { type: string; maxResults: number }[];
-            image: {
-                source: {
-                    imageUri: Blob;
-                };
-            };
+            image: { source: { imageUri: string } };
         },
     ];
 }
 
 export interface IVisionResponse {
-    labelAnnotations: {
-        description: string;
-        mid: string;
-        score: number;
-        topicality: number;
+    responses: {
+        logoAnnotations?: {
+            mid: string;
+            description: string;
+            score: number;
+            boundingPoly: { vertices: { x?: number; y?: number }[] };
+        }[];
+        labelAnnotations?: {
+            mid: string;
+            description: string;
+            score: number;
+            topicality: number;
+        }[];
+        imagePropertiesAnnotation?: {
+            dominantColors: {
+                colors: {
+                    color: { red: number; green: number; blue: number };
+                    score: number;
+                    pixelFraction: number;
+                }[];
+            };
+        };
+        cropHintsAnnotation?: {
+            cropHints?: {
+                boundingPoly: { vertices: { x?: number; y?: number }[] };
+                confidence: number;
+                importanceFraction: number;
+            }[];
+        };
     }[];
+}
+
+export interface IAdaptedHashtag {
+    tag: string;
+    active: boolean;
 }

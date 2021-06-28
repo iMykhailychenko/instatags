@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 import React, { ReactElement } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ImageLibraryOptions, ImagePickerResponse, launchImageLibrary } from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -21,8 +21,12 @@ export const ImgUpload = observer(({ navigation }: IProps): ReactElement => {
 
     const handlePhotos = async () => {
         launchImageLibrary(options, async (response: ImagePickerResponse): Promise<void> => {
-            await upload.add(response);
-            navigation.navigate('Tags');
+            if (response?.assets?.[0]?.uri) {
+                await upload.add(response?.assets?.[0]?.uri);
+                navigation.navigate('Tags');
+            } else {
+                Alert.alert('Error');
+            }
         });
     };
 
