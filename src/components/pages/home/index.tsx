@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { Navigation, NavigationParams, Pages } from '../../../interfaces';
 import { ImgUpload } from '../../common/image-upload';
@@ -42,7 +42,7 @@ export const Home = ({ navigation }: IProps): ReactElement => {
                 <ImgUpload navigation={navigation} />
 
                 <Separator>or</Separator>
-                <View style={{ marginBottom: 40 }}>
+                <View style={styles.list}>
                     {references.map<ReactElement>(route => (
                         <ReferenceItem key={route.page} navigation={navigation} navigateParams={[route.page, route.params]}>
                             {route.text}
@@ -55,3 +55,9 @@ export const Home = ({ navigation }: IProps): ReactElement => {
         </Container>
     );
 };
+
+const styles = StyleSheet.create({
+    list: {
+        marginBottom: 40,
+    },
+});
