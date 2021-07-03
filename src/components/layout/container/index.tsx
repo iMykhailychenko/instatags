@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 
 import { useColors } from '../../../hooks/colors.hook';
 

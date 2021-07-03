@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 import React, { ReactElement } from 'react';
-import { ActivityIndicator, Alert, Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { useColors } from '../../../hooks/colors.hook';
 import { useStore } from '../../../hooks/store.hook';
