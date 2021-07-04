@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { ActionSheetIOS, Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ImagePickerResponse, launchImageLibrary } from 'react-native-image-picker';
 import { launchCamera } from 'react-native-image-picker/src/index';
