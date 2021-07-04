@@ -5,7 +5,8 @@
     "scripts": {
         "android": "react-native run-android",
         "ios": "react-native run-ios",
-        "iphone-8": "react-native run-ios --simulator=\"iPhone 8\"",
+        "iphone-6": "react-native run-ios --simulator=\"iPhone 6\"",
+        "iphone-1": "react-native run-ios --simulator=\"iPhone 1\"",
         "start": "react-native start",
         "test": "jest",
         "lint": "prettier --write './**/*.{js,jsx,ts,tsx,css,json}' --config ./.prettierrc && eslint --fix ./"
