@@ -1,9 +1,8 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Navigation, NavigationParams, Pages } from '../../../interfaces';
 import { ImgUpload } from '../../common/image-upload';
-import { SelectedPhoto } from '../../common/modals/select-photo';
 import { ReferenceItem } from '../../common/reference-item';
 import { Separator } from '../../common/separator';
 import { Container } from '../../layout/container';

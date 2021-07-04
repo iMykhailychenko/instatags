@@ -1,15 +1,5 @@
 import React, { ReactElement } from 'react';
-import {
-    Alert,
-    GestureResponderEvent,
-    Modal,
-    Pressable,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    useColorScheme,
-    View,
-} from 'react-native';
+import { Alert, GestureResponderEvent, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ImagePickerResponse, launchImageLibrary } from 'react-native-image-picker';
 import { launchCamera } from 'react-native-image-picker/src/index';
 
