@@ -1,8 +1,9 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Navigation, NavigationParams, Pages } from '../../../interfaces';
 import { ImgUpload } from '../../common/image-upload';
+import { SelectedPhoto } from '../../common/modals/select-photo';
 import { ReferenceItem } from '../../common/reference-item';
 import { Separator } from '../../common/separator';
 import { Container } from '../../layout/container';
@@ -40,8 +41,8 @@ export const Home = ({ navigation }: IProps): ReactElement => {
         <Container>
             <>
                 <ImgUpload navigation={navigation} />
-
                 <Separator>or</Separator>
+
                 <View style={styles.list}>
                     {references.map<ReactElement>(route => (
                         <ReferenceItem key={route.page} navigation={navigation} navigateParams={[route.page, route.params]}>
@@ -49,7 +50,6 @@ export const Home = ({ navigation }: IProps): ReactElement => {
                         </ReferenceItem>
                     ))}
                 </View>
-
                 <Separator>recent actions</Separator>
             </>
         </Container>

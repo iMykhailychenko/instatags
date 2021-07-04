@@ -62,13 +62,7 @@ export const SelectedPhoto = ({ visible, onClose, navigation }: IProps): ReactEl
 
     return (
         <Modal animationType="fade" visible={visible} transparent onRequestClose={onClose}>
-            <Pressable
-                onPress={handleBackdrop}
-                style={{
-                    ...styles.container,
-                    backgroundColor: useColorScheme() === 'light' ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.8)',
-                }}
-            >
+            <Pressable onPress={handleBackdrop} style={styles.container}>
                 <View style={{ ...styles.modal, backgroundColor: colors.white }}>
                     <TouchableOpacity onPress={onClose}>
                         <View style={styles.button}>
@@ -92,6 +86,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
     },
     modal: {
         position: 'absolute',
