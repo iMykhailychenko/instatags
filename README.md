@@ -1,2 +1,2 @@
 # instatags
-instatags instatags instatags
+instatags instatags
