@@ -2,3 +2,4 @@
 instatags instatags
 instatags
 mobile
+desktop
