@@ -19,6 +19,8 @@ export const Tags = observer((): ReactElement => {
     const upload = useStore<IUpload>(state => state.upload);
     const hashtags = useStore<IHashtags>(state => state.hashtags);
 
+    const showShareButton = hashtags.loading && upload.original && hashtags.tags;
+
     useEffect(() => {
         const publishPhotoToFirebase = async (uri: string): Promise<void> => {
             // TEMP uncomment here
@@ -49,7 +51,7 @@ export const Tags = observer((): ReactElement => {
                     )}
                 </View>
                 <HashtagsList />
-                {upload.original && hashtags.tags && <ShareButton file={upload.original} tags={hashtags.tags} />}
+                {showShareButton && <ShareButton file={upload.original as string} tags={hashtags.tags} />}
             </>
         </Container>
     );

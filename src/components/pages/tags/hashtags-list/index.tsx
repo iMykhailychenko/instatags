@@ -41,7 +41,7 @@ export const HashtagsList = observer((): ReactElement => {
 
     return (
         <>
-            {hashtags.loading && !hashtags.tags.length ? <ActivityIndicator size="small" color={colors.blue700} /> : null}
+            {hashtags.loading && !hashtags.tags.length ? <ActivityIndicator size="large" color={colors.blue700} /> : null}
             {hashtags.tags.length ? (
                 <>
                     <Text style={{ ...styles.text, color: colors.gray600 }}>
