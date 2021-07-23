@@ -17,6 +17,7 @@ export const ShareButton = ({ file, tags }: IProps): ReactElement => {
         try {
             const result = await Share.share({
                 url: file,
+                title: tags.reduce((acc, item) => (acc += item.active ? ` #${item.tag}` : ''), '')?.trim(),
                 message: tags.reduce((acc, item) => (acc += item.active ? ` #${item.tag}` : ''), '')?.trim(),
             });
 

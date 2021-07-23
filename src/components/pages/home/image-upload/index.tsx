@@ -9,6 +9,7 @@ import { useColors } from '../../../../hooks/colors.hook';
 import { useImageUpload } from '../../../../hooks/image-upload.hook';
 import { useStore } from '../../../../hooks/store.hook';
 import { Navigation } from '../../../../interfaces';
+import { ILoading } from '../../../../store/loader';
 import { IUpload } from '../../../../store/upload';
 
 interface IProps {
@@ -18,16 +19,21 @@ interface IProps {
 export const ImgUpload = observer(({ navigation }: IProps): ReactElement => {
     const colors = useColors();
     const imageUpload = useImageUpload();
+
+    const loading = useStore<ILoading>(state => state.loading);
     const upload = useStore<IUpload>(state => state.upload);
 
     const handleCamera = async () => {
         launchCamera({ mediaType: 'photo', cameraType: 'front' }, async (response: ImagePickerResponse): Promise<void> => {
             if (response?.assets?.[0]?.uri) {
+                loading.start();
                 await upload.addOriginalFile(response?.assets?.[0]?.uri);
-                navigation.navigate('Tags');
 
                 const uri = await imageUpload(response?.assets?.[0]?.uri);
                 await upload.addServerUrl(uri);
+
+                loading.end();
+                navigation.navigate('Tags');
             } else {
                 Alert.alert('Camera unavailable');
             }
@@ -37,10 +43,13 @@ export const ImgUpload = observer(({ navigation }: IProps): ReactElement => {
     const handleGallery = async () => {
         launchImageLibrary({ mediaType: 'photo' }, async (response: ImagePickerResponse): Promise<void> => {
             if (response?.assets?.[0]?.uri) {
+                loading.start();
                 await upload.addOriginalFile(response?.assets?.[0]?.uri);
 
                 const uri = await imageUpload(response?.assets?.[0]?.uri);
                 await upload.addServerUrl(uri);
+
+                loading.end();
                 navigation.navigate('Tags');
             } else {
                 Alert.alert('Gallery unavailable');

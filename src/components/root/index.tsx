@@ -4,6 +4,7 @@ import React, { ReactElement } from 'react';
 
 import { useColors } from '../../hooks/colors.hook';
 import { RootStackParamList } from '../../interfaces';
+import { FullPageLoader } from '../common/full-page-loader';
 import { Cites } from '../pages/cites';
 import { Estimate } from '../pages/estimate';
 import { Home } from '../pages/home';
@@ -24,16 +25,20 @@ export const App = (): ReactElement => {
     };
 
     return (
-        <NavigationContainer>
-            <MainStack.Navigator initialRouteName="Home">
-                <MainStack.Screen name="Home" component={Home} options={options} />
+        <>
+            <NavigationContainer>
+                <MainStack.Navigator initialRouteName="Home">
+                    <MainStack.Screen name="Home" component={Home} options={options} />
 
-                <MainStack.Screen name="Estimate" component={Estimate} options={options} />
-                <MainStack.Screen name="Synonyms" component={Synonyms} options={options} />
-                <MainStack.Screen name="Cites" component={Cites} options={options} />
+                    <MainStack.Screen name="Estimate" component={Estimate} options={options} />
+                    <MainStack.Screen name="Synonyms" component={Synonyms} options={options} />
+                    <MainStack.Screen name="Cites" component={Cites} options={options} />
 
-                <MainStack.Screen name="Tags" component={Tags} options={options} />
-            </MainStack.Navigator>
-        </NavigationContainer>
+                    <MainStack.Screen name="Tags" component={Tags} options={options} />
+                </MainStack.Navigator>
+            </NavigationContainer>
+
+            <FullPageLoader />
+        </>
     );
 };

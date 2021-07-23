@@ -51,7 +51,7 @@ export const Tags = observer((): ReactElement => {
                     )}
                 </View>
                 <HashtagsList />
-                {showShareButton && <ShareButton file={upload.original as string} tags={hashtags.tags} />}
+                {!showShareButton && <ShareButton file={upload.original as string} tags={hashtags.tags} />}
             </>
         </Container>
     );
