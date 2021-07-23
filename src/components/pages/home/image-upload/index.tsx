@@ -23,9 +23,11 @@ export const ImgUpload = observer(({ navigation }: IProps): ReactElement => {
     const handleCamera = async () => {
         launchCamera({ mediaType: 'photo', cameraType: 'front' }, async (response: ImagePickerResponse): Promise<void> => {
             if (response?.assets?.[0]?.uri) {
-                const uri = await imageUpload(response?.assets?.[0]?.uri);
-                await upload.add(uri);
+                await upload.addOriginalFile(response?.assets?.[0]?.uri);
                 navigation.navigate('Tags');
+
+                const uri = await imageUpload(response?.assets?.[0]?.uri);
+                await upload.addServerUrl(uri);
             } else {
                 Alert.alert('Camera unavailable');
             }
@@ -35,8 +37,10 @@ export const ImgUpload = observer(({ navigation }: IProps): ReactElement => {
     const handleGallery = async () => {
         launchImageLibrary({ mediaType: 'photo' }, async (response: ImagePickerResponse): Promise<void> => {
             if (response?.assets?.[0]?.uri) {
+                await upload.addOriginalFile(response?.assets?.[0]?.uri);
+
                 const uri = await imageUpload(response?.assets?.[0]?.uri);
-                await upload.add(uri);
+                await upload.addServerUrl(uri);
                 navigation.navigate('Tags');
             } else {
                 Alert.alert('Gallery unavailable');

@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 import React, { ReactElement, useEffect } from 'react';
-import { Alert, Image, ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, ImageSourcePropType, StyleSheet, Text, View } from 'react-native';
 
 import { useColors } from '../../../hooks/colors.hook';
 import { useImageUpload } from '../../../hooks/image-upload.hook';
@@ -39,17 +39,17 @@ export const Tags = observer((): ReactElement => {
     return (
         <Container>
             <>
-                <TouchableOpacity style={styles.button} onPress={() => Alert.alert('change img')}>
-                    {upload.file ? (
-                        <Image source={{ uri: upload.file } as ImageSourcePropType} style={styles.box} />
+                <View style={styles.button}>
+                    {upload.original ? (
+                        <Image source={{ uri: upload.original } as ImageSourcePropType} style={styles.box} />
                     ) : (
                         <View style={{ ...styles.box, backgroundColor: colors.yellow100 }}>
-                            <Text style={styles.text}>Tap to change image</Text>
+                            <Text style={styles.text}>Loading ...</Text>
                         </View>
                     )}
-                </TouchableOpacity>
+                </View>
                 <HashtagsList />
-                {upload.file && hashtags.tags && <ShareButton file={upload.file} tags={hashtags.tags} />}
+                {upload.original && hashtags.tags && <ShareButton file={upload.original} tags={hashtags.tags} />}
             </>
         </Container>
     );
