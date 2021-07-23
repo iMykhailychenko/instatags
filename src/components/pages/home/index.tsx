@@ -2,10 +2,10 @@ import React, { ReactElement } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Navigation, NavigationParams, Pages } from '../../../interfaces';
-import { ImgUpload } from '../../common/image-upload';
 import { ReferenceItem } from '../../common/reference-item';
 import { Separator } from '../../common/separator';
 import { Container } from '../../layout/container';
+import { ImgUpload } from './image-upload';
 
 interface IReferences {
     page: Pages;

@@ -2,10 +2,10 @@ import { observer } from 'mobx-react';
 import React, { ReactElement } from 'react';
 import { ActivityIndicator, Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import { useColors } from '../../../hooks/colors.hook';
-import { useStore } from '../../../hooks/store.hook';
-import { IAdaptedHashtag } from '../../../interfaces';
-import { IHashtags } from '../../../store/hashtags';
+import { useColors } from '../../../../hooks/colors.hook';
+import { useStore } from '../../../../hooks/store.hook';
+import { IAdaptedHashtag } from '../../../../interfaces';
+import { IHashtags } from '../../../../store/hashtags';
 
 interface IProps {
     item: IAdaptedHashtag;
@@ -74,7 +74,7 @@ export const HashtagsList = observer((): ReactElement => {
 const styles = StyleSheet.create({
     text: {
         marginBottom: 30,
-        lineHeight: 30,
+        lineHeight: 25,
         fontSize: 16,
     },
     heading: {
@@ -92,13 +92,15 @@ const styles = StyleSheet.create({
         lineHeight: 16,
     },
     button: {
+        marginRight: 20,
         fontSize: 16,
         lineHeight: 16,
-        marginRight: 20,
+        fontWeight: '500',
     },
     tags: {
         flexDirection: 'row',
         flexWrap: 'wrap',
+        marginBottom: 40,
     },
     tag: {
         marginRight: 10,

@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import { Alert } from 'react-native';
 
-// import { api } from '../../api';
+import { api } from '../../api';
 import { IAdaptedHashtag, IVisionResponse } from '../../interfaces';
 import { visionResponse } from './__mocks__';
 import { adapter } from './hashtags.utils';
@@ -35,17 +35,17 @@ export default class Hashtags implements IHashtags {
 
     run = async (url: string): Promise<IAdaptedHashtag[] | void> => {
         this.loading = true;
-        // const list: IVisionResponse | void = await api.vision(url);
-        // if (list) return await this.set(list);
+        const list: IVisionResponse | void = await api.vision(url);
+        if (list) return await this.set(list);
 
         // TEMP DEVELOPMENT MOCK
-        const temp = new Promise(resolve => {
-            setTimeout(() => {
-                resolve(url);
-            }, 1500);
-        });
+        // const temp = new Promise(resolve => {
+        //     setTimeout(() => {
+        //         resolve(url);
+        //     }, 1500);
+        // });
 
-        await temp.catch(error => Alert.alert(error));
+        // await temp.catch(error => Alert.alert(error));
         return await this.set(visionResponse).catch(error => Alert.alert(error));
     };
 

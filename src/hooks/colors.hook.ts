@@ -45,7 +45,7 @@ const values: IThemes = {
         white: '#ffffff',
         // 700
         blue700: '#0066cc',
-        red700: '#ff8757',
+        red700: '#fa6540',
         gray700: '#313134',
 
         // gray

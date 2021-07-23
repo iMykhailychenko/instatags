@@ -3,28 +3,30 @@ import React, { ReactElement, useEffect } from 'react';
 import { Alert, Image, ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { useColors } from '../../../hooks/colors.hook';
-// import { useImageUpload } from '../../../hooks/image-upload.hook';
+import { useImageUpload } from '../../../hooks/image-upload.hook';
 import { useStore } from '../../../hooks/store.hook';
 import { IHashtags } from '../../../store/hashtags';
 import { IUpload } from '../../../store/upload';
-import { HashtagsList } from '../../common/hashtags-list';
+import { ShareButton } from '../../common/share-button';
 import { Container } from '../../layout/container';
+import { HashtagsList } from './hashtags-list';
 
 export const Tags = observer((): ReactElement => {
     const colors = useColors();
-    // TEMP
-    // const imageUpload = useImageUpload();
+    // TEMP uncomment from here
+    const imageUpload = useImageUpload();
 
     const upload = useStore<IUpload>(state => state.upload);
     const hashtags = useStore<IHashtags>(state => state.hashtags);
 
     useEffect(() => {
         const publishPhotoToFirebase = async (uri: string): Promise<void> => {
-            // const storedImageUrl = await imageUpload(uri).catch(error => Alert.alert(error));
-            // if (storedImageUrl) await hashtags.run(storedImageUrl).catch(error => Alert.alert(error));
+            // TEMP uncomment here
+            const storedImageUrl = await imageUpload(uri).catch(error => Alert.alert(error));
+            if (storedImageUrl) await hashtags.run(storedImageUrl).catch(error => Alert.alert(error));
 
-            // TEMP
-            if (uri) await hashtags.run(uri).catch(error => Alert.alert(error));
+            // TEMP comment here
+            // if (uri) await hashtags.run(uri).catch(error => Alert.alert(error));
         };
 
         if (upload.file) publishPhotoToFirebase(upload.file).catch(error => Alert.alert(error));
@@ -47,6 +49,7 @@ export const Tags = observer((): ReactElement => {
                     )}
                 </TouchableOpacity>
                 <HashtagsList />
+                {upload.file && hashtags.tags && <ShareButton file={upload.file} tags={hashtags.tags} />}
             </>
         </Container>
     );

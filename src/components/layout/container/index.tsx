@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 import { useColors } from '../../../hooks/colors.hook';
 
@@ -9,7 +9,12 @@ interface IProps {
 
 export const Container = ({ children }: IProps): ReactElement => {
     const color = useColors();
-    return <ScrollView style={{ ...styles.root, backgroundColor: color.white }}>{children}</ScrollView>;
+    return (
+        <ScrollView style={{ ...styles.root, backgroundColor: color.white }}>
+            {children}
+            <View style={styles.intend} />
+        </ScrollView>
+    );
 };
 
 const styles = StyleSheet.create({
@@ -17,5 +22,8 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
         paddingTop: 20,
+    },
+    intend: {
+        marginBottom: 180,
     },
 });

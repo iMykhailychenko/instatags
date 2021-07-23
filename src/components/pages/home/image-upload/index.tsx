@@ -5,11 +5,11 @@ import { ImagePickerResponse, launchImageLibrary } from 'react-native-image-pick
 import { launchCamera } from 'react-native-image-picker/src/index';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { useColors } from '../../../hooks/colors.hook';
-import { useImageUpload } from '../../../hooks/image-upload.hook';
-import { useStore } from '../../../hooks/store.hook';
-import { Navigation } from '../../../interfaces';
-import { IUpload } from '../../../store/upload';
+import { useColors } from '../../../../hooks/colors.hook';
+import { useImageUpload } from '../../../../hooks/image-upload.hook';
+import { useStore } from '../../../../hooks/store.hook';
+import { Navigation } from '../../../../interfaces';
+import { IUpload } from '../../../../store/upload';
 
 interface IProps {
     navigation: Navigation;
