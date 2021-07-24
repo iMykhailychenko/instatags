@@ -3,7 +3,6 @@ import React, { ReactElement } from 'react';
 import { ActionSheetIOS, Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ImagePickerResponse, launchImageLibrary } from 'react-native-image-picker';
 import { launchCamera } from 'react-native-image-picker/src/index';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { useImageUpload } from '../../../../hooks/image-upload.hook';
 import { useStore } from '../../../../hooks/store.hook';
@@ -80,8 +79,8 @@ export const ImgUpload = observer(({ navigation }: IProps): ReactElement => {
         <>
             <TouchableOpacity onPress={toggle}>
                 <View style={styles.button}>
-                    <Icon name="image-search" style={styles.icon} />
-                    <Text style={styles.text}>Select the photo for your instagram post</Text>
+                    <Text style={styles.text}>Hashtags from photo</Text>
+                    <Text style={styles.sub}>Tab to start</Text>
                 </View>
             </TouchableOpacity>
         </>
@@ -92,22 +91,24 @@ const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
         justifyContent: 'center',
-        height: 240,
+        height: 300,
         padding: 20,
         marginBottom: 20,
         borderRadius: 10,
         backgroundColor: Colors.red700,
     },
     text: {
-        maxWidth: 180,
+        maxWidth: 200,
         textAlign: 'center',
-        fontSize: 18,
-        color: '#ffffff',
+        fontSize: 38,
+        color: '#fff',
+        fontWeight: '600',
     },
-    icon: {
-        marginBottom: 20,
+    sub: {
+        maxWidth: 200,
+        marginTop: 20,
         textAlign: 'center',
-        fontSize: 35,
-        color: '#ffffff',
+        fontSize: 16,
+        color: '#fff',
     },
 });

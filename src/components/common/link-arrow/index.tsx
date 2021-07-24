@@ -11,7 +11,7 @@ interface IProps {
     navigateParams?: [Pages, NavigationParams] | [Pages];
 }
 
-export const ReferenceItem = ({ children, navigation, navigateParams = ['Home'] }: IProps): ReactElement => (
+export const LinkArrow = ({ children, navigation, navigateParams = ['Home'] }: IProps): ReactElement => (
     <TouchableOpacity onPress={() => navigation.navigate(...navigateParams)}>
         <View style={styles.button}>
             <Text style={styles.text}>{children}</Text>

@@ -8,7 +8,6 @@ import { IHashtags } from '../../../store/hashtags';
 import { IUpload } from '../../../store/upload';
 import { Colors } from '../../../theme';
 import { ShareButton } from '../../common/share-button';
-import { ShareInstagramButton } from '../../common/share-instagram-button';
 import { Container } from '../../layout/container';
 import { HashtagsList } from './hashtags-list';
 
@@ -47,7 +46,6 @@ export const Tags = observer((): ReactElement => {
                 </View>
                 <HashtagsList />
                 {!showShareButton && <ShareButton file={upload.original as string} tags={hashtags.tags} />}
-                {!showShareButton && <ShareInstagramButton file={upload.original as string} tags={hashtags.tags} />}
             </>
         </Container>
     );

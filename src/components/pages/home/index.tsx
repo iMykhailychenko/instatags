@@ -1,35 +1,13 @@
 import React, { ReactElement } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { Navigation, NavigationParams, Pages } from '../../../interfaces';
-import { ReferenceItem } from '../../common/reference-item';
+import { Navigation } from '../../../interfaces';
+import { DateComponent } from '../../common/date';
+import { LinkImage } from '../../common/link-image';
 import { Separator } from '../../common/separator';
 import { Container } from '../../layout/container';
+import { references } from './home.config';
 import { ImgUpload } from './image-upload';
-
-interface IReferences {
-    page: Pages;
-    text: string;
-    params: NavigationParams;
-}
-
-const references: IReferences[] = [
-    {
-        page: 'Synonyms',
-        text: 'Generate hashtags by synonyms words',
-        params: undefined,
-    },
-    {
-        page: 'Estimate',
-        text: 'Estimate how many likes a post will get',
-        params: undefined,
-    },
-    {
-        page: 'Cites',
-        text: 'Search cites for your post',
-        params: undefined,
-    },
-];
 
 interface IProps {
     navigation: Navigation;
@@ -38,14 +16,21 @@ interface IProps {
 export const Home = ({ navigation }: IProps): ReactElement => (
     <Container>
         <>
+            <DateComponent />
+
             <ImgUpload navigation={navigation} />
             <Separator>or</Separator>
 
             <View style={styles.list}>
                 {references.map<ReactElement>(route => (
-                    <ReferenceItem key={route.page} navigation={navigation} navigateParams={[route.page, route.params]}>
-                        {route.text}
-                    </ReferenceItem>
+                    <LinkImage
+                        key={route.page}
+                        uri={route.uri}
+                        text={route.text}
+                        title={route.title}
+                        navigation={navigation}
+                        navigateParams={[route.page, route.params]}
+                    />
                 ))}
             </View>
             <Separator>recent actions</Separator>
@@ -54,7 +39,5 @@ export const Home = ({ navigation }: IProps): ReactElement => (
 );
 
 const styles = StyleSheet.create({
-    list: {
-        marginBottom: 40,
-    },
+    list: { marginTop: 10, marginBottom: 20 },
 });
