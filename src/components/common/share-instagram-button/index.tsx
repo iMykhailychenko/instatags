@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Alert, StyleSheet, Text } from 'react-native';
 import Share from 'react-native-share';
+import { Social } from 'react-native-share/src/types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { useColors } from '../../../hooks/colors.hook';
@@ -11,19 +12,19 @@ interface IProps {
     tags: IAdaptedHashtag[];
 }
 
-export const ShareButton = ({ file: url, tags }: IProps): ReactElement => {
+export const ShareInstagramButton = ({ file: url, tags }: IProps): ReactElement => {
     const colors = useColors();
 
-    const title = 'Insta Tags #';
     const message = tags.reduce((acc, item) => (acc += item.active ? ` #${item.tag}` : ''), '')?.trim();
 
     const handleClick = async (): Promise<void> => {
         try {
-            await Share.open({
+            await Share.shareSingle({
                 url,
-                title,
                 message,
-                subject: title,
+                title: message,
+                subject: message,
+                social: Social.Instagram,
             });
         } catch (error) {
             Alert.alert(error?.message);
@@ -39,7 +40,7 @@ export const ShareButton = ({ file: url, tags }: IProps): ReactElement => {
             backgroundColor="transparent"
             onPress={handleClick}
         >
-            <Text style={{ ...styles.text, color: colors.blue700 }}>Share this post</Text>
+            <Text style={{ ...styles.text, color: colors.blue700 }}>Share this post to instagram</Text>
         </Icon.Button>
     );
 };

@@ -8,12 +8,12 @@ import { useStore } from '../../../hooks/store.hook';
 import { IHashtags } from '../../../store/hashtags';
 import { IUpload } from '../../../store/upload';
 import { ShareButton } from '../../common/share-button';
+import { ShareInstagramButton } from '../../common/share-instagram-button';
 import { Container } from '../../layout/container';
 import { HashtagsList } from './hashtags-list';
 
 export const Tags = observer((): ReactElement => {
     const colors = useColors();
-    // TEMP uncomment from here
     const imageUpload = useImageUpload();
 
     const upload = useStore<IUpload>(state => state.upload);
@@ -23,12 +23,8 @@ export const Tags = observer((): ReactElement => {
 
     useEffect(() => {
         const publishPhotoToFirebase = async (uri: string): Promise<void> => {
-            // TEMP uncomment here
             const storedImageUrl = await imageUpload(uri).catch(error => Alert.alert(error));
             if (storedImageUrl) await hashtags.run(storedImageUrl).catch(error => Alert.alert(error));
-
-            // TEMP comment here
-            // if (uri) await hashtags.run(uri).catch(error => Alert.alert(error));
         };
 
         if (upload.file) publishPhotoToFirebase(upload.file).catch(error => Alert.alert(error));
@@ -52,6 +48,7 @@ export const Tags = observer((): ReactElement => {
                 </View>
                 <HashtagsList />
                 {!showShareButton && <ShareButton file={upload.original as string} tags={hashtags.tags} />}
+                {!showShareButton && <ShareInstagramButton file={upload.original as string} tags={hashtags.tags} />}
             </>
         </Container>
     );
