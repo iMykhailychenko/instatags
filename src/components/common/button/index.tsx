@@ -15,6 +15,7 @@ export const Button = ({ icon, children, onPress }: IProps): ReactElement => {
         <Icon.Button
             size={25}
             name={icon}
+            style={styles.button}
             color={Colors.blue700}
             underlayColor="transparent"
             backgroundColor="transparent"
@@ -32,22 +33,21 @@ interface IButtonSmallProps {
 
 export const ButtonSmall = ({ icon, onPress }: IButtonSmallProps): ReactElement => {
     return (
-        <View style={styles.root}>
-            <Icon.Button
-                size={25}
-                name={icon}
-                color={Colors.blue700}
-                underlayColor="transparent"
-                backgroundColor={Colors.blue100}
-                onPress={onPress}
-            />
-        </View>
+        <Icon.Button
+            size={25}
+            style={styles.button}
+            name={icon}
+            color={Colors.blue700}
+            underlayColor="transparent"
+            backgroundColor={Colors.blue100}
+            onPress={onPress}
+        />
     );
 };
 
 const styles = StyleSheet.create({
-    root: {
-        width: 40,
+    button: {
+        padding: 4,
     },
     text: {
         marginTop: 3,
