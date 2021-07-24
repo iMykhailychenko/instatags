@@ -2,10 +2,12 @@ import React, { ReactElement } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { Colors } from '../../../theme';
+import { DateComponent } from '../../common/date';
 import { Container } from '../../layout/container';
 
 export const Cites = (): ReactElement => (
     <Container>
+        <DateComponent />
         <View style={styles.root}>
             <Text style={styles.text}>Coming soon ...</Text>
         </View>

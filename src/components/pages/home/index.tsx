@@ -17,7 +17,6 @@ export const Home = ({ navigation }: IProps): ReactElement => (
     <Container>
         <>
             <DateComponent />
-
             <ImgUpload navigation={navigation} />
             <Separator>or</Separator>
 

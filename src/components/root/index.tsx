@@ -6,6 +6,7 @@ import { RootStackParamList } from '../../interfaces';
 import { Colors } from '../../theme';
 import { FullPageLoader } from '../common/full-page-loader';
 import { Cites } from '../pages/cites';
+import { Edit } from '../pages/edit';
 import { Estimate } from '../pages/estimate';
 import { Home } from '../pages/home';
 import { Synonyms } from '../pages/synonyms';
@@ -34,6 +35,7 @@ export const App = (): ReactElement => {
                     <MainStack.Screen name="Cites" component={Cites} options={options} />
 
                     <MainStack.Screen name="Tags" component={Tags} options={options} />
+                    <MainStack.Screen name="Edit" component={Edit} options={options} />
                 </MainStack.Navigator>
             </NavigationContainer>
 

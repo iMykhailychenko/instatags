@@ -8,9 +8,10 @@ export type RootStackParamList = {
     Synonyms: NavigationParams;
     Cites: NavigationParams;
     Estimate: NavigationParams;
+    Edit: NavigationParams;
 };
 
-export type Pages = 'Home' | 'Tags' | 'Synonyms' | 'Cites' | 'Estimate';
+export type Pages = 'Home' | 'Tags' | 'Synonyms' | 'Cites' | 'Estimate' | 'Edit';
 
 export type Navigation = StackNavigationProp<RootStackParamList, Pages>;
 

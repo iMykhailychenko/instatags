@@ -1,9 +1,7 @@
 import React, { ReactElement } from 'react';
 import { ImageBackground, ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { Navigation, NavigationParams, Pages } from '../../../interfaces';
-import { Colors } from '../../../theme';
 
 interface IProps {
     uri: ImageSourcePropType;

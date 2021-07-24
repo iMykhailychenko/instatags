@@ -5,7 +5,7 @@ import { Colors } from '../../../theme';
 import { DateComponent } from '../../common/date';
 import { Container } from '../../layout/container';
 
-export const Estimate = (): ReactElement => (
+export const Edit = (): ReactElement => (
     <Container>
         <DateComponent />
         <View style={styles.root}>
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 10,
         height: 240,
-        backgroundColor: Colors.violet100,
+        backgroundColor: Colors.green100,
     },
     text: {
         padding: 10,

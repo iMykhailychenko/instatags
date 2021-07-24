@@ -4,14 +4,20 @@ import { Alert, Image, ImageSourcePropType, StyleSheet, Text, View } from 'react
 
 import { useImageUpload } from '../../../hooks/image-upload.hook';
 import { useStore } from '../../../hooks/store.hook';
+import { Navigation } from '../../../interfaces';
 import { IHashtags } from '../../../store/hashtags';
 import { IUpload } from '../../../store/upload';
 import { Colors } from '../../../theme';
-import { ShareButton } from '../../common/share-button';
+import { DateComponent } from '../../common/date';
 import { Container } from '../../layout/container';
 import { HashtagsList } from './hashtags-list';
+import { Actions } from './next-steps';
 
-export const Tags = observer((): ReactElement => {
+interface IProps {
+    navigation: Navigation;
+}
+
+export const Tags = observer(({ navigation }: IProps): ReactElement => {
     const imageUpload = useImageUpload();
 
     const upload = useStore<IUpload>(state => state.upload);
@@ -35,6 +41,7 @@ export const Tags = observer((): ReactElement => {
     return (
         <Container>
             <>
+                <DateComponent />
                 <View style={styles.button}>
                     {upload.original ? (
                         <Image source={{ uri: upload.original } as ImageSourcePropType} style={styles.box} />
@@ -45,7 +52,7 @@ export const Tags = observer((): ReactElement => {
                     )}
                 </View>
                 <HashtagsList />
-                {!showShareButton && <ShareButton file={upload.original as string} tags={hashtags.tags} />}
+                {!showShareButton && <Actions navigation={navigation} />}
             </>
         </Container>
     );
@@ -58,7 +65,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 10,
         overflow: 'hidden',
-        height: 240,
+        height: 300,
+        marginBottom: 20,
         backgroundColor: Colors.yellow100,
     },
     button: {

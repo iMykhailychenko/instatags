@@ -6,6 +6,7 @@ import { useStore } from '../../../../hooks/store.hook';
 import { IAdaptedHashtag } from '../../../../interfaces';
 import { IHashtags } from '../../../../store/hashtags';
 import { Colors } from '../../../../theme';
+import { Title } from '../../../common/title';
 
 interface IProps {
     item: IAdaptedHashtag;
@@ -42,7 +43,7 @@ export const HashtagsList = observer((): ReactElement => {
             {hashtags.loading && !hashtags.tags.length ? <ActivityIndicator size="large" color={Colors.blue700} /> : null}
             {hashtags.tags.length ? (
                 <>
-                    <Text style={styles.text}>Select hashtags that you would apply to your instagram post</Text>
+                    <Title>Select hashtags</Title>
                     <View style={styles.heading}>
                         <View style={styles.row}>
                             <TouchableOpacity onPress={async () => hashtags.toggleAll(true).catch(error => Alert.alert(error))}>
@@ -66,12 +67,6 @@ export const HashtagsList = observer((): ReactElement => {
 });
 
 const styles = StyleSheet.create({
-    text: {
-        marginBottom: 30,
-        lineHeight: 25,
-        fontSize: 16,
-        color: Colors.gray600,
-    },
     heading: {
         flexDirection: 'row',
         justifyContent: 'space-between',
