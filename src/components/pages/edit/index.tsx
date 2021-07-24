@@ -25,9 +25,12 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     input: {
-        height: '46%',
+        flex: 1,
+        maxHeight: '40%',
         padding: 15,
         fontSize: 16,
         lineHeight: 30,
+        borderColor: Colors.gray200,
+        borderWidth: 1,
     },
 });
