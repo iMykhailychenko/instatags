@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { Colors } from '../../../theme';
@@ -27,23 +27,16 @@ export const Button = ({ icon, children, onPress }: IProps): ReactElement => {
 };
 
 interface IButtonSmallProps {
+    size?: number;
     icon: string;
     onPress: () => void;
 }
 
-export const ButtonSmall = ({ icon, onPress }: IButtonSmallProps): ReactElement => {
-    return (
-        <Icon.Button
-            size={25}
-            style={styles.button}
-            name={icon}
-            color={Colors.blue700}
-            underlayColor="transparent"
-            backgroundColor={Colors.blue100}
-            onPress={onPress}
-        />
-    );
-};
+export const ButtonSmall = ({ size = 25, icon, onPress }: IButtonSmallProps): ReactElement => (
+    <TouchableOpacity onPress={onPress}>
+        <Icon size={size} name={icon} color={Colors.blue700} />
+    </TouchableOpacity>
+);
 
 const styles = StyleSheet.create({
     button: {

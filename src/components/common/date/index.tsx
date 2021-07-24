@@ -17,15 +17,6 @@ export const DateComponent = ({ date = new Date() }: IProps): ReactElement => (
     </View>
 );
 
-export const DateComponentSmall = ({ date = new Date() }: IProps): ReactElement => (
-    <View>
-        <Text style={styles.text}>DATE</Text>
-        <Text style={styles.date}>
-            {date?.getDate()} {months[date?.getMonth() || 0]} {date?.getFullYear()}
-        </Text>
-    </View>
-);
-
 const styles = StyleSheet.create({
     box: {
         marginBottom: 30,

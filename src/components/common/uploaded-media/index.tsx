@@ -3,9 +3,11 @@ import React, { ReactElement } from 'react';
 import { Image, ImageSourcePropType, StyleSheet, Text, View } from 'react-native';
 
 import { useStore } from '../../../hooks/store.hook';
+import { IHashtags } from '../../../store/hashtags';
 import { IUpload } from '../../../store/upload';
 import { Colors } from '../../../theme';
-import { DateComponentSmall } from '../date';
+import { getActions } from '../../../utils/utils';
+import { ButtonSmall } from '../button';
 
 export const UploadedMedia = observer((): ReactElement => {
     const upload = useStore<IUpload>(state => state.upload);
@@ -25,11 +27,18 @@ export const UploadedMedia = observer((): ReactElement => {
 
 export const UploadedMediaSmall = observer((): ReactElement => {
     const upload = useStore<IUpload>(state => state.upload);
+    const hashtags = useStore<IHashtags>(state => state.hashtags);
+
+    const actions = getActions({ hashtags, upload });
 
     return (
         <View style={small.wrp}>
-            <DateComponentSmall />
             <Image source={{ uri: upload.original } as ImageSourcePropType} style={small.box} />
+            <View style={small.buttons}>
+                <ButtonSmall icon="ios-share-outline" onPress={actions.share} />
+                <View style={small.separator} />
+                <ButtonSmall size={22} icon="ios-save-outline" onPress={actions.save} />
+            </View>
         </View>
     );
 });
@@ -39,8 +48,16 @@ const small = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
         padding: 15,
         borderRadius: 6,
+    },
+    separator: {
+        marginLeft: 25,
+    },
+    buttons: {
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     box: {
         alignItems: 'center',

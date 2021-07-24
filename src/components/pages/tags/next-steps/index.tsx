@@ -7,7 +7,7 @@ import { Navigation } from '../../../../interfaces';
 import { IHashtags } from '../../../../store/hashtags';
 import { IUpload } from '../../../../store/upload';
 import { getActions } from '../../../../utils/utils';
-import { Button, ButtonSmall } from '../../../common/button';
+import { Button } from '../../../common/button';
 import { Title } from '../../../common/title';
 
 interface IProps {
@@ -38,9 +38,6 @@ export const Actions = observer(({ navigation }: IProps): ReactElement => {
             <Button icon="ios-save-outline" onPress={actions.save}>
                 Save results
             </Button>
-
-            <View style={styles.separator} />
-            <ButtonSmall icon="ios-save-outline" onPress={actions.save} />
         </>
     );
 });

@@ -31,6 +31,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         lineHeight: 30,
         borderColor: Colors.gray200,
-        borderWidth: 1,
+        borderTopWidth: 1,
     },
 });
