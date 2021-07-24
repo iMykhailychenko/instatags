@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Alert, StyleSheet, Text } from 'react-native';
 import Share from 'react-native-share';
-import { Social } from 'react-native-share/src/types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { useColors } from '../../../hooks/colors.hook';
@@ -24,7 +23,19 @@ export const ShareInstagramButton = ({ file: url, tags }: IProps): ReactElement 
                 message,
                 title: message,
                 subject: message,
-                social: Social.Instagram,
+                social: Share.Social.INSTAGRAM,
+                forceDialog: true,
+
+                // url?: string;
+                // type?: string;
+                // filename?: string;
+                // message?: string;
+                // title: string;
+                // subject?: string;
+                // email?: string;
+                // recipient?: string;
+                // social: Exclude<Social, Social.FacebookStories | Social.InstagramStories>;
+                // forceDialog?: boolean;
             });
         } catch (error) {
             Alert.alert(error?.message);
