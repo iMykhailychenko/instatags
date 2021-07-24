@@ -1,30 +1,33 @@
-import React, { ReactElement } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { observer } from 'mobx-react';
+import React, { ReactElement, useState } from 'react';
+import { StyleSheet, TextInput, View } from 'react-native';
 
+import { useStore } from '../../../hooks/store.hook';
+import { IHashtags } from '../../../store/hashtags';
 import { Colors } from '../../../theme';
-import { DateComponent } from '../../common/date';
-import { Container } from '../../layout/container';
+import { UploadedMediaSmall } from '../../common/uploaded-media';
 
-export const Edit = (): ReactElement => (
-    <Container>
-        <DateComponent />
+export const Edit = observer((): ReactElement => {
+    const hashtags = useStore<IHashtags>(state => state.hashtags);
+    const message = hashtags.tags.reduce((acc, item) => (acc += item.active ? ` #${item.tag}` : ''), '')?.trim();
+    const [text, setText] = useState(message);
+
+    return (
         <View style={styles.root}>
-            <Text style={styles.text}>Coming soon ...</Text>
+            <UploadedMediaSmall />
+            <TextInput style={styles.input} onChangeText={setText} value={text} multiline autoFocus />
         </View>
-    </Container>
-);
+    );
+});
 
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 10,
-        height: 240,
-        backgroundColor: Colors.green100,
     },
-    text: {
-        padding: 10,
-        fontSize: 20,
+    input: {
+        height: '46%',
+        padding: 15,
+        fontSize: 16,
+        lineHeight: 30,
     },
 });

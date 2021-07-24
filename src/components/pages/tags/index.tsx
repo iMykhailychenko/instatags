@@ -1,14 +1,14 @@
 import { observer } from 'mobx-react';
 import React, { ReactElement, useEffect } from 'react';
-import { Alert, Image, ImageSourcePropType, StyleSheet, Text, View } from 'react-native';
+import { Alert } from 'react-native';
 
 import { useImageUpload } from '../../../hooks/image-upload.hook';
 import { useStore } from '../../../hooks/store.hook';
 import { Navigation } from '../../../interfaces';
 import { IHashtags } from '../../../store/hashtags';
 import { IUpload } from '../../../store/upload';
-import { Colors } from '../../../theme';
 import { DateComponent } from '../../common/date';
+import { UploadedMedia } from '../../common/uploaded-media';
 import { Container } from '../../layout/container';
 import { HashtagsList } from './hashtags-list';
 import { Actions } from './next-steps';
@@ -42,39 +42,10 @@ export const Tags = observer(({ navigation }: IProps): ReactElement => {
         <Container>
             <>
                 <DateComponent />
-                <View style={styles.button}>
-                    {upload.original ? (
-                        <Image source={{ uri: upload.original } as ImageSourcePropType} style={styles.box} />
-                    ) : (
-                        <View style={styles.box}>
-                            <Text style={styles.text}>Loading ...</Text>
-                        </View>
-                    )}
-                </View>
+                <UploadedMedia />
                 <HashtagsList />
                 {!showShareButton && <Actions navigation={navigation} />}
             </>
         </Container>
     );
-});
-
-const styles = StyleSheet.create({
-    box: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 10,
-        overflow: 'hidden',
-        height: 300,
-        marginBottom: 20,
-        backgroundColor: Colors.yellow100,
-    },
-    button: {
-        borderRadius: 10,
-        marginBottom: 20,
-    },
-    text: {
-        padding: 10,
-        fontSize: 16,
-    },
 });
