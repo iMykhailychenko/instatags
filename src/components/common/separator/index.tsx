@@ -1,21 +1,18 @@
 import React, { ReactElement } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { useColors } from '../../../hooks/colors.hook';
+import { Colors } from '../../../theme';
 
 interface IProps {
     children: string;
 }
 
-export const Separator = ({ children }: IProps): ReactElement => {
-    const colors = useColors();
-    return (
-        <View style={styles.root}>
-            <View style={{ ...styles.border, borderColor: colors.gray300 }} />
-            <Text style={{ ...styles.text, backgroundColor: colors.white, color: colors.blue700 }}>{children}</Text>
-        </View>
-    );
-};
+export const Separator = ({ children }: IProps): ReactElement => (
+    <View style={styles.root}>
+        <View style={styles.border} />
+        <Text style={styles.text}>{children}</Text>
+    </View>
+);
 
 const styles = StyleSheet.create({
     root: {
@@ -26,6 +23,7 @@ const styles = StyleSheet.create({
     },
     border: {
         borderTopWidth: 1,
+        borderColor: Colors.gray300,
     },
     text: {
         position: 'absolute',
@@ -37,5 +35,7 @@ const styles = StyleSheet.create({
         paddingBottom: 0,
         fontSize: 16,
         textTransform: 'capitalize',
+        backgroundColor: Colors.white,
+        color: Colors.blue700,
     },
 });

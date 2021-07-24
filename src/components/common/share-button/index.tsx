@@ -3,8 +3,8 @@ import { Alert, StyleSheet, Text } from 'react-native';
 import Share from 'react-native-share';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { useColors } from '../../../hooks/colors.hook';
 import { IAdaptedHashtag } from '../../../interfaces';
+import { Colors } from '../../../theme';
 
 interface IProps {
     file: string;
@@ -12,8 +12,6 @@ interface IProps {
 }
 
 export const ShareButton = ({ file: url, tags }: IProps): ReactElement => {
-    const colors = useColors();
-
     const title = 'Insta Tags #';
     const message = tags.reduce((acc, item) => (acc += item.active ? ` #${item.tag}` : ''), '')?.trim();
 
@@ -34,12 +32,12 @@ export const ShareButton = ({ file: url, tags }: IProps): ReactElement => {
         <Icon.Button
             size={25}
             name="ios-share"
-            color={colors.blue700}
+            color={Colors.blue700}
             underlayColor="transparent"
             backgroundColor="transparent"
             onPress={handleClick}
         >
-            <Text style={{ ...styles.text, color: colors.blue700 }}>Share this post</Text>
+            <Text style={styles.text}>Share this post</Text>
         </Icon.Button>
     );
 };
@@ -49,5 +47,6 @@ const styles = StyleSheet.create({
         marginTop: 2,
         fontSize: 16,
         fontWeight: '500',
+        color: Colors.blue700,
     },
 });

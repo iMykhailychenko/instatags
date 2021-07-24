@@ -2,18 +2,17 @@ import { observer } from 'mobx-react';
 import React, { ReactElement, useEffect } from 'react';
 import { Alert, Image, ImageSourcePropType, StyleSheet, Text, View } from 'react-native';
 
-import { useColors } from '../../../hooks/colors.hook';
 import { useImageUpload } from '../../../hooks/image-upload.hook';
 import { useStore } from '../../../hooks/store.hook';
 import { IHashtags } from '../../../store/hashtags';
 import { IUpload } from '../../../store/upload';
+import { Colors } from '../../../theme';
 import { ShareButton } from '../../common/share-button';
 import { ShareInstagramButton } from '../../common/share-instagram-button';
 import { Container } from '../../layout/container';
 import { HashtagsList } from './hashtags-list';
 
 export const Tags = observer((): ReactElement => {
-    const colors = useColors();
     const imageUpload = useImageUpload();
 
     const upload = useStore<IUpload>(state => state.upload);
@@ -41,7 +40,7 @@ export const Tags = observer((): ReactElement => {
                     {upload.original ? (
                         <Image source={{ uri: upload.original } as ImageSourcePropType} style={styles.box} />
                     ) : (
-                        <View style={{ ...styles.box, backgroundColor: colors.yellow100 }}>
+                        <View style={styles.box}>
                             <Text style={styles.text}>Loading ...</Text>
                         </View>
                     )}
@@ -62,6 +61,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         overflow: 'hidden',
         height: 240,
+        backgroundColor: Colors.yellow100,
     },
     button: {
         borderRadius: 10,

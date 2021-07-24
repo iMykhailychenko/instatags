@@ -2,17 +2,16 @@ import { observer } from 'mobx-react';
 import React, { ReactElement } from 'react';
 import { ActivityIndicator, Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import { useColors } from '../../../../hooks/colors.hook';
 import { useStore } from '../../../../hooks/store.hook';
 import { IAdaptedHashtag } from '../../../../interfaces';
 import { IHashtags } from '../../../../store/hashtags';
+import { Colors } from '../../../../theme';
 
 interface IProps {
     item: IAdaptedHashtag;
 }
 
 const HashtagsItems = observer(({ item }: IProps): ReactElement => {
-    const colors = useColors();
     const hashtags = useStore<IHashtags>(state => state.hashtags);
 
     const toggleActiveTag = async (): Promise<void> => {
@@ -21,11 +20,11 @@ const HashtagsItems = observer(({ item }: IProps): ReactElement => {
 
     return (
         <TouchableOpacity onPress={toggleActiveTag}>
-            <View style={{ ...styles.tag, backgroundColor: item.active ? colors.blue100 : colors.gray100 }}>
+            <View style={{ ...styles.tag, backgroundColor: item.active ? Colors.blue100 : Colors.gray100 }}>
                 <Text
                     style={{
                         ...styles.tagText,
-                        color: item.active ? colors.blue700 : colors.gray300,
+                        color: item.active ? Colors.blue700 : Colors.gray300,
                     }}
                 >
                     {`#${item.tag}`}
@@ -36,29 +35,24 @@ const HashtagsItems = observer(({ item }: IProps): ReactElement => {
 });
 
 export const HashtagsList = observer((): ReactElement => {
-    const colors = useColors();
     const hashtags = useStore<IHashtags>(state => state.hashtags);
 
     return (
         <>
-            {hashtags.loading && !hashtags.tags.length ? <ActivityIndicator size="large" color={colors.blue700} /> : null}
+            {hashtags.loading && !hashtags.tags.length ? <ActivityIndicator size="large" color={Colors.blue700} /> : null}
             {hashtags.tags.length ? (
                 <>
-                    <Text style={{ ...styles.text, color: colors.gray600 }}>
-                        Select hashtags that you would apply to your instagram post
-                    </Text>
+                    <Text style={styles.text}>Select hashtags that you would apply to your instagram post</Text>
                     <View style={styles.heading}>
                         <View style={styles.row}>
                             <TouchableOpacity onPress={async () => hashtags.toggleAll(true).catch(error => Alert.alert(error))}>
-                                <Text style={{ ...styles.button, color: colors.blue700 }}>Select All</Text>
+                                <Text style={styles.button}>Select All</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={async () => hashtags.toggleAll(false).catch(error => Alert.alert(error))}>
-                                <Text style={{ ...styles.button, color: colors.blue700 }}>Unselect All</Text>
+                                <Text style={styles.button}>Unselect All</Text>
                             </TouchableOpacity>
                         </View>
-                        <Text style={{ ...styles.total, color: colors.dark }}>
-                            total: {hashtags.tags.filter(item => item.active).length}
-                        </Text>
+                        <Text style={styles.total}>total: {hashtags.tags.filter(item => item.active).length}</Text>
                     </View>
                     <View style={styles.tags}>
                         {hashtags.tags.map(tag => (
@@ -76,6 +70,7 @@ const styles = StyleSheet.create({
         marginBottom: 30,
         lineHeight: 25,
         fontSize: 16,
+        color: Colors.gray600,
     },
     heading: {
         flexDirection: 'row',
@@ -90,12 +85,14 @@ const styles = StyleSheet.create({
     total: {
         fontSize: 16,
         lineHeight: 16,
+        color: Colors.dark,
     },
     button: {
         marginRight: 20,
         fontSize: 16,
         lineHeight: 16,
         fontWeight: '500',
+        color: Colors.blue700,
     },
     tags: {
         flexDirection: 'row',

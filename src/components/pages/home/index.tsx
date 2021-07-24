@@ -35,25 +35,23 @@ interface IProps {
     navigation: Navigation;
 }
 
-export const Home = ({ navigation }: IProps): ReactElement => {
-    return (
-        <Container>
-            <>
-                <ImgUpload navigation={navigation} />
-                <Separator>or</Separator>
+export const Home = ({ navigation }: IProps): ReactElement => (
+    <Container>
+        <>
+            <ImgUpload navigation={navigation} />
+            <Separator>or</Separator>
 
-                <View style={styles.list}>
-                    {references.map<ReactElement>(route => (
-                        <ReferenceItem key={route.page} navigation={navigation} navigateParams={[route.page, route.params]}>
-                            {route.text}
-                        </ReferenceItem>
-                    ))}
-                </View>
-                <Separator>recent actions</Separator>
-            </>
-        </Container>
-    );
-};
+            <View style={styles.list}>
+                {references.map<ReactElement>(route => (
+                    <ReferenceItem key={route.page} navigation={navigation} navigateParams={[route.page, route.params]}>
+                        {route.text}
+                    </ReferenceItem>
+                ))}
+            </View>
+            <Separator>recent actions</Separator>
+        </>
+    </Container>
+);
 
 const styles = StyleSheet.create({
     list: {

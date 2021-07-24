@@ -1,4 +1,4 @@
-import { useColorScheme } from 'react-native';
+import { Appearance } from 'react-native';
 
 interface IColors {
     // single
@@ -88,4 +88,4 @@ const values: IThemes = {
     },
 };
 
-export const useColors = (): IColors => values[useColorScheme() || 'light'];
+export const Colors = values[Appearance.getColorScheme() || 'light'];

@@ -5,19 +5,18 @@ import { ImagePickerResponse, launchImageLibrary } from 'react-native-image-pick
 import { launchCamera } from 'react-native-image-picker/src/index';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { useColors } from '../../../../hooks/colors.hook';
 import { useImageUpload } from '../../../../hooks/image-upload.hook';
 import { useStore } from '../../../../hooks/store.hook';
 import { Navigation } from '../../../../interfaces';
 import { ILoading } from '../../../../store/loader';
 import { IUpload } from '../../../../store/upload';
+import { Colors } from '../../../../theme';
 
 interface IProps {
     navigation: Navigation;
 }
 
 export const ImgUpload = observer(({ navigation }: IProps): ReactElement => {
-    const colors = useColors();
     const imageUpload = useImageUpload();
 
     const loading = useStore<ILoading>(state => state.loading);
@@ -80,7 +79,7 @@ export const ImgUpload = observer(({ navigation }: IProps): ReactElement => {
     return (
         <>
             <TouchableOpacity onPress={toggle}>
-                <View style={{ ...styles.button, backgroundColor: colors.red700 }}>
+                <View style={styles.button}>
                     <Icon name="image-search" style={styles.icon} />
                     <Text style={styles.text}>Select the photo for your instagram post</Text>
                 </View>
@@ -97,6 +96,7 @@ const styles = StyleSheet.create({
         padding: 20,
         marginBottom: 20,
         borderRadius: 10,
+        backgroundColor: Colors.red700,
     },
     text: {
         maxWidth: 180,

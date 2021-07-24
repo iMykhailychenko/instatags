@@ -1,10 +1,9 @@
 import React, { ReactElement } from 'react';
-import { Alert, StyleSheet, Text } from 'react-native';
-import Share from 'react-native-share';
+import { Alert, NativeModules, StyleSheet, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { useColors } from '../../../hooks/colors.hook';
 import { IAdaptedHashtag } from '../../../interfaces';
+import { Colors } from '../../../theme';
 
 interface IProps {
     file: string;
@@ -12,31 +11,25 @@ interface IProps {
 }
 
 export const ShareInstagramButton = ({ file: url, tags }: IProps): ReactElement => {
-    const colors = useColors();
-
     const message = tags.reduce((acc, item) => (acc += item.active ? ` #${item.tag}` : ''), '')?.trim();
 
     const handleClick = async (): Promise<void> => {
-        try {
-            await Share.shareSingle({
-                url,
-                message,
-                title: message,
-                subject: message,
-                social: Share.Social.INSTAGRAM,
-                forceDialog: true,
+        const options = {
+            urls: [url],
+            message,
+            title: message,
+            subject: message,
+            caption: message,
+        };
 
-                // url?: string;
-                // type?: string;
-                // filename?: string;
-                // message?: string;
-                // title: string;
-                // subject?: string;
-                // email?: string;
-                // recipient?: string;
-                // social: Exclude<Social, Social.FacebookStories | Social.InstagramStories>;
-                // forceDialog?: boolean;
-            });
+        try {
+            NativeModules.RNShare.open(
+                options,
+                () => {
+                    throw new Error();
+                },
+                console.log,
+            );
         } catch (error) {
             Alert.alert(error?.message);
         }
@@ -46,12 +39,12 @@ export const ShareInstagramButton = ({ file: url, tags }: IProps): ReactElement 
         <Icon.Button
             size={25}
             name="ios-share"
-            color={colors.blue700}
+            color={Colors.blue700}
             underlayColor="transparent"
             backgroundColor="transparent"
             onPress={handleClick}
         >
-            <Text style={{ ...styles.text, color: colors.blue700 }}>Share this post to instagram</Text>
+            <Text style={styles.text}>Share this post to instagram</Text>
         </Icon.Button>
     );
 };
@@ -61,5 +54,6 @@ const styles = StyleSheet.create({
         marginTop: 2,
         fontSize: 16,
         fontWeight: '500',
+        color: Colors.blue700,
     },
 });

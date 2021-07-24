@@ -2,8 +2,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
 import React, { ReactElement } from 'react';
 
-import { useColors } from '../../hooks/colors.hook';
 import { RootStackParamList } from '../../interfaces';
+import { Colors } from '../../theme';
 import { FullPageLoader } from '../common/full-page-loader';
 import { Cites } from '../pages/cites';
 import { Estimate } from '../pages/estimate';
@@ -14,14 +14,13 @@ import { Tags } from '../pages/tags';
 const MainStack = createStackNavigator<RootStackParamList>();
 
 export const App = (): ReactElement => {
-    const colors = useColors();
-    const backgroundColor = { backgroundColor: colors.gray100 };
+    const backgroundColor = { backgroundColor: Colors.gray100 };
 
     const options: StackNavigationOptions = {
         title: '# Instatags',
         headerBackTitle: 'Back',
         headerStyle: backgroundColor,
-        headerTitleStyle: { fontSize: 22, color: colors.dark },
+        headerTitleStyle: { fontSize: 22, color: Colors.dark },
     };
 
     return (
