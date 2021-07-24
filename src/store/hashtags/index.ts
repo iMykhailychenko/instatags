@@ -43,7 +43,7 @@ export default class Hashtags implements IHashtags {
         const temp = new Promise(resolve => {
             setTimeout(() => {
                 resolve(url);
-            }, 1500);
+            }, 200);
         });
 
         await temp.catch(error => Alert.alert(error));

@@ -24,7 +24,7 @@ export const useImageUpload = (): VisionRun => {
         return await new Promise(res => {
             setTimeout(() => {
                 return res(uri);
-            }, 1000);
+            }, 300);
         });
     };
 };
