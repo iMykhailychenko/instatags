@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react';
 import React, { ReactElement } from 'react';
-import { Alert, Clipboard, StyleSheet, View } from 'react-native';
-import Share from 'react-native-share';
+import { StyleSheet, View } from 'react-native';
 
 import { useStore } from '../../../../hooks/store.hook';
 import { Navigation } from '../../../../interfaces';
